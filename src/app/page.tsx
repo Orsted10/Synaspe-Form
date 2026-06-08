@@ -377,7 +377,7 @@ export default function Home() {
                 type="text"
                 autoFocus
                 className={`animated-input ${errors.uid ? 'input-error' : ''}`}
-                placeholder="e.g. 21BCS1234"
+                placeholder="e.g. 25LBCS3067"
                 value={formData.uid}
                 onChange={(e) => handleInput("uid", e.target.value)}
               />
