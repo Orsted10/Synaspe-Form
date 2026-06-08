@@ -3,7 +3,8 @@
    Terminal / Hacker / Dev Aesthetic
    ============================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Codystar&family=Orbitron:wght@400;500;600;700;800;900&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Pixelify+Sans:wght@400;500;600;700&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=DotGothic16&display=swap');
 
 /* ── CSS Custom Properties ────────────────── */
 :root {
@@ -34,10 +35,10 @@
   --text-cyan: #06b6d4;
 
   /* Typography */
-  --font-mono: 'VT323', 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Consolas', monospace;
-  --font-heading: 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'Orbitron', 'Inter', system-ui, sans-serif;
-  --font-dots: 'Codystar', monospace;
+  --font-mono: 'VT323', 'JetBrains Mono', monospace;
+  --font-heading: 'Silkscreen', 'Pixelify Sans', cursive;
+  --font-body: 'JetBrains Mono', monospace;
+  --font-dots: 'DotGothic16', monospace;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -99,9 +100,10 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100vw;
   height: 100vh;
-  height: 100svh;
   z-index: 0;
   overflow: hidden;
 }
@@ -790,12 +792,65 @@ body {
 .card-text {
   flex: 1;
   font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   font-weight: 500;
   color: var(--text-secondary);
-  line-height: 1.4;
-  letter-spacing: 0.02em;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
   transition: color var(--duration-normal) ease;
+}
+
+/* ── Bento Box Grids ──────────────────────── */
+.domains-grid {
+  display: grid;
+  grid-template-areas:
+    "webdev ai ai"
+    "webdev sys os"
+    "event event other";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: minmax(110px, auto);
+  gap: 16px;
+  margin-top: var(--space-lg);
+}
+
+.domain-webdev { grid-area: webdev; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.domain-webdev .card-image-wrapper { width: 100%; height: 140px; margin-bottom: 8px; }
+.domain-ai { grid-area: ai; }
+.domain-sys { grid-area: sys; flex-direction: column; align-items: center; text-align: center; }
+.domain-sys .card-image-wrapper { width: 100%; height: 60px; margin-bottom: 4px; }
+.domain-os { grid-area: os; flex-direction: column; align-items: center; text-align: center; }
+.domain-os .card-image-wrapper { width: 100%; height: 60px; margin-bottom: 4px; }
+.domain-event { grid-area: event; }
+.domain-other { grid-area: other; flex-direction: column; align-items: center; justify-content: center; }
+
+.collab-grid {
+  display: grid;
+  grid-template-areas:
+    "struct peer peer"
+    "work work other";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: minmax(110px, auto);
+  gap: 16px;
+  margin-top: var(--space-lg);
+}
+
+.collab-struct { grid-area: struct; flex-direction: column; align-items: center; text-align: center; }
+.collab-struct .card-image-wrapper { width: 100%; height: 60px; margin-bottom: 4px; }
+.collab-peer { grid-area: peer; flex-direction: column; align-items: center; justify-content: flex-end; position: relative;}
+.collab-peer .card-image-wrapper { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.5; z-index: 0; }
+.collab-peer .card-text { position: relative; z-index: 1; margin-bottom: 12px; }
+
+.collab-work { grid-area: work; flex-direction: column; align-items: center; justify-content: flex-end; position: relative;}
+.collab-work .card-image-wrapper { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.5; z-index: 0; }
+.collab-work .card-text { position: relative; z-index: 1; margin-bottom: 12px; }
+
+.collab-other { grid-area: other; flex-direction: column; align-items: center; justify-content: center; }
+
+/* Remove old other-input styling */
+.other-input-container { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.other-input { 
+  width: 100%; height: 100%; background: transparent; border: none; outline: none; 
+  color: var(--text-primary); font-family: var(--font-mono); font-size: 1.1rem; text-align: center;
 }
 
 .image-card:hover .card-text,
@@ -1348,8 +1403,28 @@ body {
   .question-text {
     font-size: clamp(1.4rem, 5vw, 1.8rem);
   }
-  
   .animated-input {
     font-size: 0.95rem;
+  }
+
+  .domains-grid, .collab-grid {
+    grid-template-areas: none;
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .domain-webdev .card-image-wrapper, 
+  .domain-sys .card-image-wrapper, 
+  .domain-os .card-image-wrapper,
+  .collab-struct .card-image-wrapper { 
+    height: 120px; 
+  }
+  
+  .collab-peer .card-image-wrapper,
+  .collab-work .card-image-wrapper {
+    position: static;
+    height: 100px;
+    opacity: 1;
   }
 }

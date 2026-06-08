@@ -311,17 +311,17 @@ export default function Home() {
   );
 
   const interestOptions = [
-    { id: "Web Development", img: "/img-webdev.png", text: "Web Dev (React, UI/UX)" },
-    { id: "AI & Machine Learning", img: "/img-aiml.png", text: "AI & Machine Learning" },
-    { id: "Systems Programming", img: "/img-systems.png", text: "Systems Programming (C++)" },
-    { id: "Open Source Contribution", img: "/img-opensource.png", text: "Open Source Contribution" },
-    { id: "Event Management / Leadership", img: "/img-events.png", text: "Event Management / Leadership" }
+    { id: "Web Development", img: "/img-webdev.png", text: "Web Development", gridClass: "domain-webdev" },
+    { id: "AI & Machine Learning", img: "/img-aiml.png", text: "AI & Machine Learning", gridClass: "domain-ai" },
+    { id: "Systems Programming", img: "/img-systems.png", text: "Systems...", gridClass: "domain-sys" },
+    { id: "Open Source Contribution", img: "/img-opensource.png", text: "Open Source", gridClass: "domain-os" },
+    { id: "Event Management / Leadership", img: "/img-events.png", text: "Event Management", gridClass: "domain-event" }
   ];
 
   const collabOptions = [
-    { id: "Structured, project-based groups (Squads & Sprints)", img: "/collab_project.png", text: "Structured & Project-Based Groups" },
-    { id: "Open-ended peer-to-peer learning and mentoring", img: "/collab_peer.png", text: "Peer-to-peer Mentoring" },
-    { id: "Attending workshops and guest lectures", img: "/collab_workshop.png", text: "Workshops & Lectures" },
+    { id: "Structured, project-based groups (Squads & Sprints)", img: "/collab_project.png", text: "Structured &...", gridClass: "collab-struct" },
+    { id: "Open-ended peer-to-peer learning and mentoring", img: "/collab_peer.png", text: "Peer-to-peer Mentoring", gridClass: "collab-peer" },
+    { id: "Attending workshops and guest lectures", img: "/collab_workshop.png", text: "Workshops & Lectures", gridClass: "collab-work" },
   ];
 
   return (
@@ -440,14 +440,13 @@ export default function Home() {
         {step === 4 && (
           <>
             <Header step={step} title="Allocate Domains" hint="// What areas are you interested in? (Select multiple)" />
-            <motion.div variants={childVariants} className="image-cards-container">
-              {interestOptions.map((opt, i) => {
+            <motion.div variants={childVariants} className="domains-grid">
+              {interestOptions.map((opt) => {
                 const isSelected = formData.areas_of_interest.includes(opt.id);
-                const isLast = i === interestOptions.length - 1;
                 return (
                   <div 
                     key={opt.id}
-                    className={`image-card ${isSelected ? 'selected' : ''} ${isLast && interestOptions.length % 2 !== 0 ? 'full-width' : ''}`}
+                    className={`image-card ${isSelected ? 'selected' : ''} ${opt.gridClass}`}
                     onClick={() => toggleArrayItem("areas_of_interest", opt.id)}
                   >
                     <div className="card-image-wrapper">
@@ -461,21 +460,23 @@ export default function Home() {
                 );
               })}
               
-              <div className="other-input-container">
-                <input
-                  type="text"
-                  className="other-input"
-                  placeholder=">_ Other (specify module)"
-                  onChange={(e) => {
-                    const val = e.target.value;
-                    const withoutOthers = formData.areas_of_interest.filter(i => interestOptions.map(o => o.id).includes(i));
-                    if (val) {
-                      handleInput("areas_of_interest", [...withoutOthers, `Other: ${val}`]);
-                    } else {
-                      handleInput("areas_of_interest", withoutOthers);
-                    }
-                  }}
-                />
+              <div className="image-card domain-other">
+                <div className="other-input-container">
+                  <input
+                    type="text"
+                    className="other-input"
+                    placeholder=">_ Other (Specify)"
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      const withoutOthers = formData.areas_of_interest.filter(i => interestOptions.map(o => o.id).includes(i));
+                      if (val) {
+                        handleInput("areas_of_interest", [...withoutOthers, `Other: ${val}`]);
+                      } else {
+                        handleInput("areas_of_interest", withoutOthers);
+                      }
+                    }}
+                  />
+                </div>
               </div>
             </motion.div>
             {errors.areas_of_interest && <motion.div variants={childVariants} className="error-message">{errors.areas_of_interest}</motion.div>}
@@ -487,17 +488,16 @@ export default function Home() {
         {step === 5 && (
           <>
             <Header step={step} title="Network Topology" hint="// How do you prefer to collaborate and learn?" />
-            <motion.div variants={childVariants} className="image-cards-container">
-              {collabOptions.map((opt, i) => {
+            <motion.div variants={childVariants} className="collab-grid">
+              {collabOptions.map((opt) => {
                 const isSelected = formData.collaboration_preferences.includes(opt.id);
-                const isLast = i === collabOptions.length - 1;
                 return (
                   <div 
                     key={opt.id}
-                    className={`image-card ${isSelected ? 'selected' : ''} ${isLast && collabOptions.length % 2 !== 0 ? 'full-width' : ''}`}
+                    className={`image-card ${isSelected ? 'selected' : ''} ${opt.gridClass}`}
                     onClick={() => toggleArrayItem("collaboration_preferences", opt.id)}
                   >
-                    <div className="card-image-wrapper" style={{width: '120px', height: '80px'}}>
+                    <div className="card-image-wrapper">
                       <img src={opt.img} alt={opt.id} />
                     </div>
                     <span className="card-text">{opt.text}</span>
@@ -508,21 +508,23 @@ export default function Home() {
                 );
               })}
 
-              <div className="other-input-container">
-                <input
-                  type="text"
-                  className="other-input"
-                  placeholder=">_ Other (specify preference)"
-                  onChange={(e) => {
-                    const val = e.target.value;
-                    const withoutOthers = formData.collaboration_preferences.filter(i => collabOptions.map(o => o.id).includes(i));
-                    if (val) {
-                      handleInput("collaboration_preferences", [...withoutOthers, `Other: ${val}`]);
-                    } else {
-                      handleInput("collaboration_preferences", withoutOthers);
-                    }
-                  }}
-                />
+              <div className="image-card collab-other">
+                <div className="other-input-container">
+                  <input
+                    type="text"
+                    className="other-input"
+                    placeholder=">_ Other (Specify)"
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      const withoutOthers = formData.collaboration_preferences.filter(i => collabOptions.map(o => o.id).includes(i));
+                      if (val) {
+                        handleInput("collaboration_preferences", [...withoutOthers, `Other: ${val}`]);
+                      } else {
+                        handleInput("collaboration_preferences", withoutOthers);
+                      }
+                    }}
+                  />
+                </div>
               </div>
             </motion.div>
             {errors.collaboration_preferences && <motion.div variants={childVariants} className="error-message">{errors.collaboration_preferences}</motion.div>}
