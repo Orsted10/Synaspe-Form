@@ -36,7 +36,7 @@ export default function LoadingSequence({ onComplete }: { onComplete: () => void
             initial={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 4 }}
             transition={{ duration: 0.8, ease: "circIn" }}
-            style={{ willChange: "transform, opacity", position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            style={{ willChange: "transform, opacity", transformOrigin: "center center" }}
           >
               {/* GLOW ORB */}
               <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: -1 }}>
