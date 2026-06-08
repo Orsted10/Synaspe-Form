@@ -3,7 +3,7 @@
    Terminal / Hacker / Dev Aesthetic
    ============================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Codystar&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Codystar&family=Orbitron:wght@400;500;600;700;800;900&family=VT323&display=swap');
 
 /* ── CSS Custom Properties ────────────────── */
 :root {
@@ -34,9 +34,9 @@
   --text-cyan: #06b6d4;
 
   /* Typography */
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Consolas', monospace;
-  --font-heading: 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'VT323', 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Consolas', monospace;
+  --font-heading: 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Orbitron', 'Inter', system-ui, sans-serif;
   --font-dots: 'Codystar', monospace;
 
   /* Spacing */
@@ -101,6 +101,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100svh;
   z-index: 0;
   overflow: hidden;
 }
@@ -226,6 +227,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 40px 0; /* Ensures content doesn't get clipped on mobile */
 }
 
 .step-content {
@@ -589,7 +591,7 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-primary);
   font-family: var(--font-mono);
-  font-size: 1.05rem;
+  font-size: 1.4rem;
   font-weight: 400;
   outline: none;
   transition: border-color var(--duration-normal) var(--ease-out-expo);
@@ -614,7 +616,7 @@ body {
   top: 16px;
   left: 0;
   font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   pointer-events: none;
   transition: all var(--duration-normal) var(--ease-out-expo);
@@ -623,7 +625,7 @@ body {
 
 .animated-input ~ .input-label {
   top: -10px;
-  font-size: 0.65rem;
+  font-size: 0.9rem;
   color: var(--text-green);
   letter-spacing: 0.15em;
   text-transform: uppercase;

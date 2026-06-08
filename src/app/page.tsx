@@ -319,11 +319,9 @@ export default function Home() {
   ];
 
   const collabOptions = [
-    "Structured, project-based groups (Squads & Sprints)",
-    "Open-ended peer-to-peer learning and mentoring",
-    "Attending workshops and guest lectures",
-    "Independent work, checking in occasionally",
-    "Organizing/teaching others"
+    { id: "Structured, project-based groups (Squads & Sprints)", img: "/collab_project.png", text: "Structured & Project-Based Groups" },
+    { id: "Open-ended peer-to-peer learning and mentoring", img: "/collab_peer.png", text: "Peer-to-peer Mentoring" },
+    { id: "Attending workshops and guest lectures", img: "/collab_workshop.png", text: "Workshops & Lectures" },
   ];
 
   return (
@@ -489,23 +487,43 @@ export default function Home() {
         {step === 5 && (
           <>
             <Header step={step} title="Network Topology" hint="// How do you prefer to collaborate and learn?" />
-            <motion.div variants={childVariants} className="chips-container">
-              {collabOptions.map((opt, idx) => {
-                const isSelected = formData.collaboration_preferences.includes(opt);
+            <motion.div variants={childVariants} className="image-cards-container">
+              {collabOptions.map((opt, i) => {
+                const isSelected = formData.collaboration_preferences.includes(opt.id);
+                const isLast = i === collabOptions.length - 1;
                 return (
                   <div 
-                    key={opt}
-                    className={`chip ${isSelected ? 'selected' : ''}`}
-                    onClick={() => toggleArrayItem("collaboration_preferences", opt)}
+                    key={opt.id}
+                    className={`image-card ${isSelected ? 'selected' : ''} ${isLast && collabOptions.length % 2 !== 0 ? 'full-width' : ''}`}
+                    onClick={() => toggleArrayItem("collaboration_preferences", opt.id)}
                   >
-                    <div className="chip-index">0{idx + 1}</div>
-                    <div className="chip-check">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    <div className="card-image-wrapper" style={{width: '120px', height: '80px'}}>
+                      <img src={opt.img} alt={opt.id} />
                     </div>
-                    {opt}
+                    <span className="card-text">{opt.text}</span>
+                    <div className="card-check">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    </div>
                   </div>
                 );
               })}
+
+              <div className="other-input-container">
+                <input
+                  type="text"
+                  className="other-input"
+                  placeholder=">_ Other (specify preference)"
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    const withoutOthers = formData.collaboration_preferences.filter(i => collabOptions.map(o => o.id).includes(i));
+                    if (val) {
+                      handleInput("collaboration_preferences", [...withoutOthers, `Other: ${val}`]);
+                    } else {
+                      handleInput("collaboration_preferences", withoutOthers);
+                    }
+                  }}
+                />
+              </div>
             </motion.div>
             {errors.collaboration_preferences && <motion.div variants={childVariants} className="error-message">{errors.collaboration_preferences}</motion.div>}
             {renderNav()}
