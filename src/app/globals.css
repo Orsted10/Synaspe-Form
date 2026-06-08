@@ -36,9 +36,9 @@
 
   /* Typography */
   --font-mono: 'VT323', 'JetBrains Mono', monospace;
-  --font-heading: 'VT323', monospace;
-  --font-body: 'JetBrains Mono', monospace;
-  --font-dots: 'VT323', monospace;
+  --font-heading: 'VT323', cursive;
+  --font-body: 'VT323', monospace;
+  --font-dots: 'DotGothic16', monospace;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -113,13 +113,6 @@ body {
   height: 100%;
   object-fit: cover;
   filter: brightness(0.2) saturate(1.4) hue-rotate(-5deg);
-}
-
-@media (max-width: 768px) {
-  .video-background video {
-    object-fit: contain;
-    background-color: #000;
-  }
 }
 
 .video-overlay {
@@ -310,9 +303,7 @@ body {
   font-family: var(--font-dots);
   color: #ffffff;
   position: relative;
-  font-size: 1.4em;
-  font-weight: 400;
-  letter-spacing: -0.05em;
+  font-size: 1.2em;
 }
 
 .welcome-club {
@@ -550,10 +541,10 @@ body {
   line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--text-primary);
-  min-height: 2em; /* Prevents layout jump when scrambled text wraps */
+  overflow: hidden;
+  min-height: 2.5em; /* Prevents layout jump during scramble */
   display: flex;
   align-items: center;
-  overflow: visible;
 }
 
 /* Text scramble container */
@@ -1357,21 +1348,26 @@ body {
 
 @media (max-width: 480px) {
   .welcome-title {
-    font-size: 2.2rem;
+    font-size: 3rem;
   }
 
   .question-text {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
   }
 
   .begin-button {
-    padding: 14px 28px;
-    font-size: 0.8rem;
+    padding: 16px 32px;
+    font-size: 1.1rem;
   }
 }
 
 /* ── Mobile Optimizations ─────────────────── */
 @media (max-width: 768px) {
+  .video-background video {
+    object-fit: contain; /* Prevents video text cutoff */
+    object-position: center;
+  }
+
   .step-content {
     padding: var(--space-md);
     margin-top: 60px; /* Space for step counter */
@@ -1379,12 +1375,11 @@ body {
   }
 
   .welcome-title .gradient-text {
-    font-size: 1.5em; /* Increase size on mobile */
-    line-height: 1.2;
+    font-size: 1.6em;
   }
 
   .welcome-club {
-    font-size: 0.35em;
+    font-size: 0.4em;
     gap: 12px;
   }
 
@@ -1402,7 +1397,7 @@ body {
   }
   
   .terminal-line {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -1410,14 +1405,14 @@ body {
   .step-counter {
     top: 12px;
     right: 16px;
-    font-size: 0.65rem;
+    font-size: 0.85rem;
   }
   
   .question-text {
-    font-size: clamp(1.6rem, 6vw, 2rem); /* Larger questions on mobile */
+    font-size: clamp(1.8rem, 6vw, 2.2rem);
   }
   .animated-input {
-    font-size: 0.95rem;
+    font-size: 1.2rem;
   }
 
   .domains-grid, .collab-grid {
