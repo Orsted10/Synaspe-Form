@@ -285,7 +285,7 @@ body {
   font-size: clamp(2.8rem, 7vw, 5.5rem);
   font-weight: 800;
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.05em;
   position: relative;
 }
 
@@ -1155,6 +1155,9 @@ body {
   transition: all var(--duration-normal) var(--ease-out-expo);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
 }
 
 .review-item::before {
@@ -1445,14 +1448,46 @@ body {
     flex-direction: column;
   }
 
-  .domain-webdev .card-image-wrapper, 
-  .domain-sys .card-image-wrapper, 
-  .domain-os .card-image-wrapper,
-  .collab-struct .card-image-wrapper { 
-    height: 120px; 
+  .domains-grid .card-image-wrapper {
+    width: 100% !important;
+    height: 140px !important;
+  }
+
+  .domain-sys .card-image-wrapper,
+  .domain-os .card-image-wrapper {
+    height: 80px !important;
+  }
+
+  /* Network Topology Mobile Styling */
+  .collab-struct {
+    position: relative;
+    padding: 0;
+    justify-content: center;
   }
   
-  .collab-peer, .collab-work {
+  .collab-struct .card-image-wrapper,
+  .collab-peer .card-image-wrapper,
+  .collab-work .card-image-wrapper {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0.4 !important;
+    z-index: 0 !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
+  .collab-struct .card-text,
+  .collab-peer .card-text,
+  .collab-work .card-text {
+    position: relative;
+    z-index: 1;
+    font-size: 1.4rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+  }
+
+  .collab-struct, .collab-peer, .collab-work {
     height: 120px;
   }
 }
