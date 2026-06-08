@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import VideoBackground from "@/components/VideoBackground";
 import ParticleField from "@/components/ParticleField";
 import ProgressBar from "@/components/ProgressBar";
 import StepWrapper, { childVariants } from "@/components/StepWrapper";
+import LoadingSequence from "@/components/LoadingSequence";
 import { submitMemberForm, type MemberFormData } from "@/lib/supabase";
 import confetti from "canvas-confetti";
 
@@ -101,6 +102,7 @@ export default function Home() {
   const [formData, setFormData] = useState<MemberFormData>(initialData);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showLoading, setShowLoading] = useState(true);
 
   const TOTAL_STEPS = 10; // 0-10
   const progress = (step / TOTAL_STEPS) * 100;
@@ -311,21 +313,25 @@ export default function Home() {
   );
 
   const interestOptions = [
-    { id: "Web Development", img: "/img-webdev.png", text: "Web Development", gridClass: "domain-webdev" },
-    { id: "AI & Machine Learning", img: "/img-aiml.png", text: "AI & Machine Learning", gridClass: "domain-ai" },
-    { id: "Systems Programming", img: "/img-systems.png", text: "Systems Programming", gridClass: "domain-sys" },
-    { id: "Open Source Contribution", img: "/img-opensource.png", text: "Open Source", gridClass: "domain-os" },
-    { id: "Event Management / Leadership", img: "/img-events.png", text: "Event Management", gridClass: "domain-event" }
+    { id: "Web Development", img: "/web_development_1780904007038.png", text: "Web Development", gridClass: "domain-webdev" },
+    { id: "AI & Machine Learning", img: "/ai_machine_learning_1780904019865.png", text: "AI & Machine Learning", gridClass: "domain-ai" },
+    { id: "Systems Programming", img: "/systems_programming_1780904031735.png", text: "Systems Programming", gridClass: "domain-sys" },
+    { id: "Open Source Contribution", img: "/open_source_1780904045447.png", text: "Open Source", gridClass: "domain-os" },
+    { id: "Event Management / Leadership", img: "/event_management_1780904058528.png", text: "Event Management", gridClass: "domain-event" }
   ];
 
   const collabOptions = [
-    { id: "Structured, project-based groups (Squads & Sprints)", img: "/collab_project.png", text: "Structured & Project-Based", gridClass: "collab-struct" },
-    { id: "Open-ended peer-to-peer learning and mentoring", img: "/collab_peer.png", text: "Peer-to-peer Mentoring", gridClass: "collab-peer" },
-    { id: "Attending workshops and guest lectures", img: "/collab_workshop.png", text: "Workshops & Lectures", gridClass: "collab-work" },
+    { id: "Structured, project-based groups (Squads & Sprints)", img: "/structured_projects_1780904084249.png", text: "Structured & Project-Based", gridClass: "collab-struct" },
+    { id: "Open-ended peer-to-peer learning and mentoring", img: "/open_learning_1780904094970.png", text: "Peer-to-peer Mentoring", gridClass: "collab-peer" },
+    { id: "Attending workshops and guest lectures", img: "/workshops_guest_lectures_1780904107273.png", text: "Workshops & Lectures", gridClass: "collab-work" },
   ];
 
   return (
     <main className="main-container">
+      <AnimatePresence>
+        {showLoading && <LoadingSequence onComplete={() => setShowLoading(false)} />}
+      </AnimatePresence>
+
       <VideoBackground />
       <ParticleField />
       
