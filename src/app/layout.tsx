@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
+import { VT323, DotGothic16, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+
+const vt323 = VT323({ weight: '400', subsets: ['latin'], variable: '--font-vt' });
+const dotGothic = DotGothic16({ weight: '400', subsets: ['latin'], variable: '--font-dot' });
+const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jb' });
 
 export const metadata: Metadata = {
   title: "Synapse Society — Join Us",
@@ -12,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${vt323.variable} ${dotGothic.variable} ${jetbrains.variable}`}>
+      <body suppressHydrationWarning className={`${vt323.variable} ${dotGothic.variable} ${jetbrains.variable}`}>
         <div className="terminal-decoration">
           SYSTEM_INIT: OK<br />
           MEM_ALLOC: 4096KB<br />
