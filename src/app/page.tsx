@@ -331,7 +331,7 @@ export default function Home() {
       <VideoBackground />
       <ParticleField />
       
-      {step > 0 && <ProgressBar progress={progress} />}
+      {step > 0 && <ProgressBar current={step} total={TOTAL_STEPS} />}
       
       {step > 0 && step < 10 && (
         <motion.div 
