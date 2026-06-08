@@ -12,8 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <div className="terminal-decoration">
           SYSTEM_INIT: OK<br />
           MEM_ALLOC: 4096KB<br />

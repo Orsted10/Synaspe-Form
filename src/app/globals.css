@@ -36,9 +36,9 @@
 
   /* Typography */
   --font-mono: 'VT323', 'JetBrains Mono', monospace;
-  --font-heading: 'Silkscreen', 'Pixelify Sans', cursive;
+  --font-heading: 'VT323', monospace;
   --font-body: 'JetBrains Mono', monospace;
-  --font-dots: 'DotGothic16', monospace;
+  --font-dots: 'VT323', monospace;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -113,6 +113,13 @@ body {
   height: 100%;
   object-fit: cover;
   filter: brightness(0.2) saturate(1.4) hue-rotate(-5deg);
+}
+
+@media (max-width: 768px) {
+  .video-background video {
+    object-fit: contain;
+    background-color: #000;
+  }
 }
 
 .video-overlay {
@@ -303,7 +310,9 @@ body {
   font-family: var(--font-dots);
   color: #ffffff;
   position: relative;
-  font-size: 1.2em;
+  font-size: 1.4em;
+  font-weight: 400;
+  letter-spacing: -0.05em;
 }
 
 .welcome-club {
@@ -541,7 +550,10 @@ body {
   line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--text-primary);
-  overflow: hidden;
+  min-height: 2em; /* Prevents layout jump when scrambled text wraps */
+  display: flex;
+  align-items: center;
+  overflow: visible;
 }
 
 /* Text scramble container */
@@ -1367,12 +1379,13 @@ body {
   }
 
   .welcome-title .gradient-text {
-    font-size: 1em;
+    font-size: 1.5em; /* Increase size on mobile */
+    line-height: 1.2;
   }
 
   .welcome-club {
-    font-size: 0.25em;
-    gap: 10px;
+    font-size: 0.35em;
+    gap: 12px;
   }
 
   .image-cards-container {
@@ -1401,7 +1414,7 @@ body {
   }
   
   .question-text {
-    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    font-size: clamp(1.6rem, 6vw, 2rem); /* Larger questions on mobile */
   }
   .animated-input {
     font-size: 0.95rem;
