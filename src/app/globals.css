@@ -264,11 +264,13 @@ body {
 
 .loading-synapse {
   font-family: var(--font-dots);
-  font-size: clamp(4rem, 12vw, 8rem);
+  font-size: clamp(2.8rem, 12vw, 8rem);
   font-weight: 400;
   color: #ffffff;
   letter-spacing: 0.05em;
   line-height: 1;
+  text-align: center;
+  width: 100%;
   text-shadow: 0 0 40px rgba(255, 255, 255, 0.4), 
                0 0 100px rgba(124, 58, 237, 0.6);
 }
