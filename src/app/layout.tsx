@@ -25,6 +25,8 @@ export default function RootLayout({
           ROOT_ACCESS: DENIED<br />
           USER_ID: ANONYMOUS
         </div>
+        <div className="scanlines"></div>
+        <div className="vignette"></div>
         {children}
       </body>
     </html>
