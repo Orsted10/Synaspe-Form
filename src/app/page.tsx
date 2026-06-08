@@ -313,13 +313,13 @@ export default function Home() {
   const interestOptions = [
     { id: "Web Development", img: "/img-webdev.png", text: "Web Development", gridClass: "domain-webdev" },
     { id: "AI & Machine Learning", img: "/img-aiml.png", text: "AI & Machine Learning", gridClass: "domain-ai" },
-    { id: "Systems Programming", img: "/img-systems.png", text: "Systems...", gridClass: "domain-sys" },
+    { id: "Systems Programming", img: "/img-systems.png", text: "Systems Programming", gridClass: "domain-sys" },
     { id: "Open Source Contribution", img: "/img-opensource.png", text: "Open Source", gridClass: "domain-os" },
     { id: "Event Management / Leadership", img: "/img-events.png", text: "Event Management", gridClass: "domain-event" }
   ];
 
   const collabOptions = [
-    { id: "Structured, project-based groups (Squads & Sprints)", img: "/collab_project.png", text: "Structured &...", gridClass: "collab-struct" },
+    { id: "Structured, project-based groups (Squads & Sprints)", img: "/collab_project.png", text: "Structured & Project-Based", gridClass: "collab-struct" },
     { id: "Open-ended peer-to-peer learning and mentoring", img: "/collab_peer.png", text: "Peer-to-peer Mentoring", gridClass: "collab-peer" },
     { id: "Attending workshops and guest lectures", img: "/collab_workshop.png", text: "Workshops & Lectures", gridClass: "collab-work" },
   ];
