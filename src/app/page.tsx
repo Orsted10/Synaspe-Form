@@ -281,13 +281,13 @@ export default function Home() {
       </motion.div>
       
       <motion.div variants={childVariants} className="welcome-title">
-        <span className="line-one">INITIALIZING</span>
-        <span className="gradient-text" data-text="Synapse_OS">Synapse_OS</span>
+        <span className="gradient-text" data-text="SYNAPSE">SYNAPSE</span>
+        <div className="welcome-club">SOCIETY</div>
       </motion.div>
       
       <motion.div variants={childVariants} className="terminal-line">
-        <span className="prompt">admin@synapse:~$</span>
-        <span>./execute_onboarding.sh</span>
+        <span className="prompt">root@synapse:~$</span>
+        <span>./join_club.sh</span>
         <span className="cursor-blink"></span>
       </motion.div>
       
@@ -350,7 +350,7 @@ export default function Home() {
         {/* STEP 1: NAME */}
         {step === 1 && (
           <>
-            <Header step={step} title="What's your full name?" hint="Enter string value" />
+            <Header step={step} title="What's your full name?" hint="// What should we call you?" />
             <motion.div variants={childVariants} className="input-group">
               <input
                 type="text"
@@ -371,7 +371,7 @@ export default function Home() {
         {/* STEP 2: UID */}
         {step === 2 && (
           <>
-            <Header step={step} title="Enter your UID" hint="University Identifier" />
+            <Header step={step} title="Enter your UID" hint="// Your University Roll Number" />
             <motion.div variants={childVariants} className="input-group">
               <input
                 type="text"
@@ -441,7 +441,7 @@ export default function Home() {
         {/* STEP 4: INTERESTS (IMAGES) */}
         {step === 4 && (
           <>
-            <Header step={step} title="Allocate Domains" hint="Select processing nodes (multiple allowed)" />
+            <Header step={step} title="Allocate Domains" hint="// What areas are you interested in? (Select multiple)" />
             <motion.div variants={childVariants} className="image-cards-container">
               {interestOptions.map((opt, i) => {
                 const isSelected = formData.areas_of_interest.includes(opt.id);
@@ -488,7 +488,7 @@ export default function Home() {
         {/* STEP 5: COLLAB PREFS */}
         {step === 5 && (
           <>
-            <Header step={step} title="Network Topology" hint="How do you prefer to collaborate and learn?" />
+            <Header step={step} title="Network Topology" hint="// How do you prefer to collaborate and learn?" />
             <motion.div variants={childVariants} className="chips-container">
               {collabOptions.map((opt, idx) => {
                 const isSelected = formData.collaboration_preferences.includes(opt);
@@ -515,7 +515,7 @@ export default function Home() {
         {/* STEP 6: EXPECTATIONS */}
         {step === 6 && (
           <>
-            <Header step={step} title="System Expectations" hint="What do you expect to get out of the club?" />
+            <Header step={step} title="System Expectations" hint="// What do you hope to get out of joining the club?" />
             <motion.div variants={childVariants} className="textarea-group">
               <textarea
                 autoFocus
@@ -533,7 +533,7 @@ export default function Home() {
         {/* STEP 7: OUTCOMES */}
         {step === 7 && (
           <>
-            <Header step={step} title="Outcome Prediction" hint="Are there specific skills or achievements you aim for?" />
+            <Header step={step} title="Outcome Prediction" hint="// Are there specific skills or achievements you aim for?" />
             <motion.div variants={childVariants} className="textarea-group">
               <textarea
                 autoFocus
@@ -550,7 +550,7 @@ export default function Home() {
         {/* STEP 8: IDEAS */}
         {step === 8 && (
           <>
-            <Header step={step} title="Override Logic" hint="Any ideas for events, workshops, or projects?" />
+            <Header step={step} title="Override Logic" hint="// Do you have any ideas for events, workshops, or projects?" />
             <motion.div variants={childVariants} className="textarea-group">
               <textarea
                 autoFocus
@@ -567,7 +567,7 @@ export default function Home() {
         {/* STEP 9: REVIEW */}
         {step === 9 && (
           <>
-            <Header step={step} title="Compile & Run" hint="Verify payload before commit" />
+            <Header step={step} title="Compile & Run" hint="// Review your answers before submitting" />
             <motion.div variants={childVariants} className="review-container">
               {[
                 { label: "ID.String", val: formData.full_name, st: 1 },
