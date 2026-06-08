@@ -31,13 +31,13 @@ export default function LoadingSequence({ onComplete }: { onComplete: () => void
     >
       <AnimatePresence>
         {phase === 'intro' && (
-          <div className="loading-content">
-            <motion.div
-              initial={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 4 }}
-              transition={{ duration: 0.8, ease: "circIn" }}
-              style={{ willChange: "transform, opacity", position: 'relative' }}
-            >
+          <motion.div
+            className="loading-content"
+            initial={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 4 }}
+            transition={{ duration: 0.8, ease: "circIn" }}
+            style={{ willChange: "transform, opacity", position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
               {/* GLOW ORB */}
               <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: -1 }}>
                 <motion.div 
@@ -48,13 +48,13 @@ export default function LoadingSequence({ onComplete }: { onComplete: () => void
                   style={{ position: 'relative', top: 'auto', left: 'auto', transform: 'none' }}
                 />
               </div>
-              
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
                 <motion.h1
                   className="loading-synapse"
                   initial={{ y: 80, opacity: 0, filter: "brightness(0.2)" }}
                   animate={{ y: 0, opacity: 1, filter: "brightness(1.5)" }}
                   transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ textIndent: '0.05em' }}
                 >
                   SYNAPSE
                 </motion.h1>
@@ -68,7 +68,6 @@ export default function LoadingSequence({ onComplete }: { onComplete: () => void
                 </motion.div>
               </div>
             </motion.div>
-          </div>
         )}
       </AnimatePresence>
       
