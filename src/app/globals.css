@@ -73,6 +73,8 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -286,6 +288,9 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
+  white-space: nowrap;
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
   text-shadow: 0 0 40px rgba(255, 255, 255, 0.4), 
                0 0 100px rgba(124, 58, 237, 0.6);
 }
