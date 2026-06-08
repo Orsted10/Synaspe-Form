@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { VT323, DotGothic16, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const vt323 = VT323({ weight: '400', subsets: ['latin'], variable: '--font-vt' });
-const dotGothic = DotGothic16({ weight: '400', subsets: ['latin'], variable: '--font-dot' });
-const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jb' });
+const vt323 = VT323({ weight: '400', subsets: ['latin'], display: 'block', variable: '--font-vt' });
+const dotGothic = DotGothic16({ weight: '400', subsets: ['latin'], display: 'block', variable: '--font-dot' });
+const jetbrains = JetBrains_Mono({ subsets: ['latin'], display: 'block', variable: '--font-jb' });
 
 export const metadata: Metadata = {
   title: "Synapse Society — Join Us",

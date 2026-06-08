@@ -39,12 +39,15 @@ export default function LoadingSequence({ onComplete }: { onComplete: () => void
             style={{ willChange: "transform, opacity" }}
           >
             {/* GLOW ORB */}
-            <motion.div 
-              className="loading-glow"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-            />
+            <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: -1 }}>
+              <motion.div 
+                className="loading-glow"
+                initial={{ opacity: 0, scale: 0.5, x: 0, y: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                style={{ position: 'relative', top: 'auto', left: 'auto', transform: 'none' }}
+              />
+            </div>
             
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <motion.h1
