@@ -38,15 +38,28 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     setLoading(true);
     setLogs((prev) => [...prev, "[ SYS.SYNC ] Establishing secure link..."]);
-    const { success, data, error } = await getMembers();
     
-    if (success && data) {
-      setMembers(data);
-      setLogs((prev) => [...prev, `[ SYS.OK ] Retrieved ${data.length} records.`]);
-    } else {
-      setError(error || "Failed to fetch data.");
-      setLogs((prev) => [...prev, `[ SYS.ERR ] ${error}`]);
+    try {
+      const response = await fetch("/api/admin/members", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password })
+      });
+      
+      const { success, data, error } = await response.json();
+      
+      if (success && data) {
+        setMembers(data);
+        setLogs((prev) => [...prev, `[ SYS.OK ] Retrieved ${data.length} records.`]);
+      } else {
+        setError(error || "Failed to fetch data.");
+        setLogs((prev) => [...prev, `[ SYS.ERR ] ${error}`]);
+      }
+    } catch (err) {
+      setError("Network error fetching database records.");
+      setLogs((prev) => [...prev, `[ SYS.ERR ] Network error.`]);
     }
+    
     setLoading(false);
   };
 
