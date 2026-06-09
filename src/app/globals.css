@@ -77,6 +77,14 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Global 125-150% zoom on Desktop */
+@media (min-width: 1024px) {
+  html { font-size: 20px; } /* 125% */
+}
+@media (min-width: 1440px) {
+  html { font-size: 24px; } /* 150% */
+}
+
 body {
   font-family: var(--font-mono);
   background: var(--bg-primary);
