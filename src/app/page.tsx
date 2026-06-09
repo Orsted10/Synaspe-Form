@@ -241,9 +241,9 @@ export default function Home() {
         });
       }, 250);
 
-    } catch (err) {
+    } catch (err: any) {
       console.error("Submission failed:", err);
-      alert("System failure during database sync. Check console.");
+      alert(err.message || "System failure during database sync. Check console.");
     } finally {
       setIsSubmitting(false);
     }

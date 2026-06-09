@@ -50,6 +50,9 @@ export async function submitMemberForm(
 
     if (error) {
       console.error("Supabase insert error:", error);
+      if (error.code === '23505') {
+        return { success: false, error: "This UID is already registered in the system." };
+      }
       return { success: false, error: error.message };
     }
 
@@ -57,5 +60,18 @@ export async function submitMemberForm(
   } catch (err) {
     console.error("Unexpected error:", err);
     return { success: false, error: "An unexpected error occurred." };
+  }
+}
+
+export async function getMembers(): Promise<{ success: boolean; data?: MemberFormData[]; error?: string }> {
+  const supabase = getSupabase();
+  if (!supabase) return { success: false, error: "Database not connected." };
+
+  try {
+    const { data, error } = await supabase.from("members").select("*").order("created_at", { ascending: false });
+    if (error) return { success: false, error: error.message };
+    return { success: true, data: data as MemberFormData[] };
+  } catch (err) {
+    return { success: false, error: "Unexpected error fetching members." };
   }
 }
